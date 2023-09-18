@@ -9,8 +9,17 @@ const Photo = require('./models/Photo');
 const PhotoController = require('./controllers/photoControllers');
 const PageController = require('./controllers/pageController');
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 
-mongoose.connect('mongodb://127.0.0.1:27017/pcat-dev');
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('DB CONNECTED');
+}).catch((err) => {
+  console.log(err);
+});
 
 app.set('view engine', 'ejs');
 
@@ -36,7 +45,7 @@ app.get('/add', PageController.getAddPage);
 
 app.get('/photos/edit/:id', PageController.getEditPage);
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
