@@ -30,8 +30,11 @@ app.get('/add', (req, res) => {
   res.render('add');
 });
 
-app.get('/detail', (req, res) => {
-  res.render('detail');
+app.get('/photos/:id', async(req, res) => {
+  const photo = await Photo.findById(req.params.id)
+  res.render('photo', {
+    photo
+  })
 });
 
 app.post('/photos', async (req, res) => {
