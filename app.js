@@ -12,12 +12,11 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-mongoose.connect('mongodb+srv://bulutcihad:12bulut12@pcat-cluster.wnorlca.mongodb.net/?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
+mongoose.connect('mongodb+srv://bulutcihad:12bulut12@pcat-cluster.wnorlca.mongodb.net/?retryWrites=true&w=majority')
+.then(() => {
   console.log('DB CONNECTED');
-}).catch((err) => {
+})
+.catch((err) => {
   console.log(err);
 });
 
