@@ -12,7 +12,7 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-mongoose.connect('mongodb+srv://bulutcihad:12bulut12@pcat-cluster.wnorlca.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
   console.log('DB CONNECTED');
 })
